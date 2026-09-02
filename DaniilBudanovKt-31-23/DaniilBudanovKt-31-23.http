@@ -1,0 +1,6 @@
+@DaniilBudanovKt_31_23_HostAddress = http://localhost:5116
+
+GET {{DaniilBudanovKt_31_23_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
