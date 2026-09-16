@@ -1,7 +1,12 @@
 using NLog;
 using NLog.Web;
+using DaniilBudanovKt_31_23.Database;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<StudentDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres")));
 
 var logger = LogManager.Setup()
     .LoadConfigurationFromAppSettings()
