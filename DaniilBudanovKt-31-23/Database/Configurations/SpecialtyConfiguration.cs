@@ -5,35 +5,21 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DaniilBudanovKt_31_23.Database.Configurations
 {
-    public class AcademicGroupConfiguration : IEntityTypeConfiguration<AcademicGroup>
+    public class SpecialtyConfiguration : IEntityTypeConfiguration<Specialty>
     {
-        public void Configure(EntityTypeBuilder<AcademicGroup> builder)
+        public void Configure(EntityTypeBuilder<Specialty> builder)
         {
-            builder.ToTable("academic_groups");
+            builder.ToTable("specialties");
 
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
-                .HasColumnName("id")
-                .HasColumnType(ColumnType.Int);
+                .HasColumnName("id");
 
             builder.Property(x => x.Name)
                 .HasColumnName("name")
                 .HasColumnType(ColumnType.String)
                 .HasMaxLength(100)
-                .IsRequired();
-
-            builder.Property(x => x.SpecialtyId)
-                .HasColumnName("specialty_id")
-                .IsRequired();
-
-            builder.HasOne(x => x.Specialty)
-                .WithMany()
-                .HasForeignKey(x => x.SpecialtyId);
-
-            builder.Property(x => x.Year)
-                .HasColumnName("year")
-                .HasColumnType(ColumnType.Int)
                 .IsRequired();
 
             builder.Property(x => x.IsDeleted)

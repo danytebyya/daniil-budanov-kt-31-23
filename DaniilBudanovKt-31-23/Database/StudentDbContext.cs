@@ -15,7 +15,7 @@ namespace DaniilBudanovKt_31_23.Database
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Grade> Grades { get; set; }
-        public DbSet<Credit> Credits { get; set; }
+        public DbSet<Specialty> Specialties { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace DaniilBudanovKt_31_23.Database
             modelBuilder.ApplyConfiguration(new StudentConfiguration());
             modelBuilder.ApplyConfiguration(new SubjectConfiguration());
             modelBuilder.ApplyConfiguration(new GradeConfiguration());
-            modelBuilder.ApplyConfiguration(new CreditConfiguration());
+            modelBuilder.ApplyConfiguration(new SpecialtyConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
