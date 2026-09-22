@@ -1,6 +1,7 @@
 using NLog;
 using NLog.Web;
 using DaniilBudanovKt_31_23.Database;
+using DaniilBudanovKt_31_23.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,8 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddDatabaseServices();
 
     var app = builder.Build();
 
