@@ -122,15 +122,26 @@ namespace DaniilBudanovKt_31_23.Migrations
                         .HasColumnType("int4")
                         .HasColumnName("academic_group_id");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(200)
+                        .HasMaxLength(100)
                         .HasColumnType("varchar")
-                        .HasColumnName("full_name");
+                        .HasColumnName("first_name");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bool")
                         .HasColumnName("is_deleted");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("last_name");
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("middle_name");
 
                     b.HasKey("Id");
 

@@ -16,6 +16,8 @@ namespace DaniilBudanovKt_31_23.Services
 
             services.AddScoped<IGradeService, GradeService>();
 
+            services.AddScoped<ISpecialtyService, SpecialtyService>();
+
             services.AddScoped<IPerformanceService, PerformanceService>();
 
             return services;

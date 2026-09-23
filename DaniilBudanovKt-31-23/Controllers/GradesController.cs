@@ -1,4 +1,5 @@
 ﻿using DaniilBudanovKt_31_23.Models;
+using DaniilBudanovKt_31_23.Requests;
 using DaniilBudanovKt_31_23.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +17,15 @@ namespace DaniilBudanovKt_31_23.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Grade>> AddGrade(Grade grade)
+        public async Task<ActionResult<Grade>> AddGrade(CreateGradeRequest request)
         {
+            var grade = new Grade
+            {
+                StudentId = request.StudentId,
+                SubjectId = request.SubjectId,
+                Value = request.Value
+            };
+
             var result =
                 await _gradeService.AddGradeAsync(grade);
 
@@ -25,8 +33,15 @@ namespace DaniilBudanovKt_31_23.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<Grade>> UpdateGrade(Grade grade)
+        public async Task<ActionResult<Grade>> UpdateGrade(UpdateGradeRequest request)
         {
+            var grade = new Grade
+            {
+                StudentId = request.StudentId,
+                SubjectId = request.SubjectId,
+                Value = request.Value
+            };
+
             var result =
                 await _gradeService.UpdateGradeAsync(grade);
 

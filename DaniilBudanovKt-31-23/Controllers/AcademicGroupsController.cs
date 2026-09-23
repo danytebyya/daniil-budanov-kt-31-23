@@ -1,5 +1,6 @@
 ﻿using DaniilBudanovKt_31_23.Filters;
 using DaniilBudanovKt_31_23.Models;
+using DaniilBudanovKt_31_23.Requests;
 using DaniilBudanovKt_31_23.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,18 +17,17 @@ namespace DaniilBudanovKt_31_23.Controllers
             _academicGroupService = academicGroupService;
         }
 
-        [HttpPost("filter")]
-        public async Task<ActionResult<List<AcademicGroup>>> GetAcademicGroups(AcademicGroupFilter filter)
-        {
-            var groups =
-                await _academicGroupService.GetAcademicGroupsAsync(filter);
-
-            return Ok(groups);
-        }
-
         [HttpPost]
-        public async Task<ActionResult<AcademicGroup>> AddAcademicGroup(AcademicGroup group)
+        public async Task<ActionResult<AcademicGroup>> AddAcademicGroup(CreateAcademicGroupRequest request)
         {
+            var group = new AcademicGroup
+            {
+                Name = request.Name,
+                Year = request.Year,
+                SpecialtyId = request.SpecialtyId,
+                IsDeleted = false
+            };
+
             var result =
                 await _academicGroupService.AddAcademicGroupAsync(group);
 
@@ -35,8 +35,15 @@ namespace DaniilBudanovKt_31_23.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<AcademicGroup>> UpdateAcademicGroup(AcademicGroup group)
+        public async Task<ActionResult<AcademicGroup>> UpdateAcademicGroup(UpdateAcademicGroupRequest request)
         {
+            var group = new AcademicGroup
+            {
+                Name = request.Name,
+                Year = request.Year,
+                SpecialtyId = request.SpecialtyId
+            };
+
             var result =
                 await _academicGroupService.UpdateAcademicGroupAsync(group);
 
@@ -60,6 +67,15 @@ namespace DaniilBudanovKt_31_23.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpPost("filter")]
+        public async Task<ActionResult<List<AcademicGroup>>> GetAcademicGroups(AcademicGroupFilter filter)
+        {
+            var groups =
+                await _academicGroupService.GetAcademicGroupsAsync(filter);
+
+            return Ok(groups);
         }
     }
 }

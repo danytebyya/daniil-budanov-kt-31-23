@@ -57,14 +57,5 @@ namespace DaniilBudanovKt_31_23.Controllers
 
             return Ok(average);
         }
-
-        [HttpGet("debts")]
-        public async Task<ActionResult<List<Subject>>> GetDebts(string lastName)
-        {
-            var subjects =await _performanceService
-                .GetDebtsByStudentLastNameAsync(lastName);
-
-            return Ok(subjects);
-        }
     }
 }

@@ -1,6 +1,7 @@
-﻿using DaniilBudanovKt_31_23.Models;
+﻿using DaniilBudanovKt_31_23.Filters;
+using DaniilBudanovKt_31_23.Models;
+using DaniilBudanovKt_31_23.Requests;
 using DaniilBudanovKt_31_23.Services.Interfaces;
-using DaniilBudanovKt_31_23.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DaniilBudanovKt_31_23.Controllers
@@ -10,28 +11,41 @@ namespace DaniilBudanovKt_31_23.Controllers
     public class StudentsController: ControllerBase
     {
         private readonly IStudentService _studentService;
+
         public StudentsController(IStudentService studentService)
         {
             _studentService = studentService;
         }
-        [HttpPost("filter")]
-        public async Task<ActionResult<List<Student>>> GetStudents(
-            StudentFilter filter)
-        {
-            var students = await _studentService.GetStudentsAsync(filter);
-            return Ok(students);
-        }
 
         [HttpPost]
-        public async Task<ActionResult<Student>> AddStudent(Student student)
+        public async Task<ActionResult<Student>> AddStudent(CreateStudentRequest request)
         {
-            return Ok(
-                await _studentService.AddStudentAsync(student));
+            var student = new Student
+            {
+                LastName = request.LastName,
+                FirstName = request.FirstName,
+                MiddleName = request.MiddleName,
+                AcademicGroupId = request.AcademicGroupId,
+                IsDeleted = false
+            };
+
+            var result =
+                await _studentService.AddStudentAsync(student);
+
+            return Ok(result);
         }
 
         [HttpPut]
-        public async Task<ActionResult<Student>> UpdateStudent(Student student)
+        public async Task<ActionResult<Student>> UpdateStudent(UpdateStudentRequest request)
         {
+            var student = new Student
+            {
+                LastName = request.LastName,
+                FirstName = request.FirstName,
+                MiddleName = request.MiddleName,
+                AcademicGroupId = request.AcademicGroupId
+            };
+
             var result =
                 await _studentService.UpdateStudentAsync(student);
 
@@ -55,6 +69,14 @@ namespace DaniilBudanovKt_31_23.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpPost("filter")]
+        public async Task<ActionResult<List<Student>>> GetStudents(
+            StudentFilter filter)
+        {
+            var students = await _studentService.GetStudentsAsync(filter);
+            return Ok(students);
         }
     }
 }

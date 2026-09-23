@@ -56,5 +56,15 @@
     "C:\\Users\\den4ick\\.nuget\\packages\\system.text.json\\9.0.15\\system.text.json.9.0.15.nupkg.sha512",
     "C:\\Users\\den4ick\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Произошла ошибка при получении данных уязвимости пакета: Не удалось загрузить индекс служб для источника https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\Users\\den4ick\\source\\repos\\daniil-budanov-kt-31-23\\DaniilBudanovKt-31-23\\DaniilBudanovKt-31-23.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\den4ick\\source\\repos\\daniil-budanov-kt-31-23\\DaniilBudanovKt-31-23\\DaniilBudanovKt-31-23.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

@@ -9,7 +9,5 @@ namespace DaniilBudanovKt_31_23.Services.Interfaces
         Task<Grade?> GetStudentGradeAsync(int studentId, int subjectId);
 
         Task<double> GetAverageGradeByYearAsync(int year);
-
-        Task<List<Subject>> GetDebtsByStudentLastNameAsync(string fullName);
     }
 }

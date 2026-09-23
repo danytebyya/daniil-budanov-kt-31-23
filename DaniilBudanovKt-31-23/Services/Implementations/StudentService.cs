@@ -29,7 +29,10 @@ namespace DaniilBudanovKt_31_23.Services.Implementations
             if (!string.IsNullOrWhiteSpace(filter.FullName))
             {
                 query = query.Where(x =>
-                    x.FullName.Contains(filter.FullName));
+                    x.LastName.Contains(filter.FullName) ||
+                    x.FirstName.Contains(filter.FullName) ||
+                    (x.MiddleName != null &&
+                     x.MiddleName.Contains(filter.FullName)));
             }
 
             if (filter.IsDeleted.HasValue)
@@ -61,7 +64,9 @@ namespace DaniilBudanovKt_31_23.Services.Implementations
                 return null;
             }
 
-            existingStudent.FullName = student.FullName;
+            existingStudent.LastName = student.LastName;
+            existingStudent.FirstName = student.FirstName;
+            existingStudent.MiddleName = student.MiddleName;
             existingStudent.AcademicGroupId = student.AcademicGroupId;
 
             await _context.SaveChangesAsync();

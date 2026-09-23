@@ -47,16 +47,5 @@ namespace DaniilBudanovKt_31_23.Services.Implementations
 
             return await query.AverageAsync(x => x.Value);
         }
-
-        public async Task<List<Subject>> GetDebtsByStudentLastNameAsync(string fullName)
-        {
-            return await _context.Grades
-                .Where(x =>
-                    x.Student.FullName == fullName &&
-                    x.Value <= 2)
-                .Select(x => x.Subject)
-                .Distinct()
-                .ToListAsync();
-        }
     }
 }

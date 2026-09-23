@@ -1,6 +1,6 @@
 ﻿using DaniilBudanovKt_31_23.Filters;
 using DaniilBudanovKt_31_23.Models;
-using DaniilBudanovKt_31_23.Services.Implementations;
+using DaniilBudanovKt_31_23.Requests;
 using DaniilBudanovKt_31_23.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,24 +17,31 @@ namespace DaniilBudanovKt_31_23.Controllers
             _subjectService = subjectService;
         }
 
-        [HttpPost("filter")]
-        public async Task<ActionResult<List<Subject>>> GetSubjects(
-            SubjectFilter filter)
-        {
-            var subjects = await _subjectService.GetSubjectsAsync(filter);
-            return Ok(subjects);
-        }
-
         [HttpPost]
-        public async Task<ActionResult<Subject>> AddSubject(Subject subject)
+        public async Task<ActionResult<Subject>> AddSubject(CreateSubjectRequest request)
         {
-            return Ok(
-                await _subjectService.AddSubjectAsync(subject));
+            var subject = new Subject
+            {
+                Name = request.Name,
+                Direction = request.Direction,
+                IsDeleted = false
+            };
+
+            var result =
+                await _subjectService.AddSubjectAsync(subject);
+
+            return Ok(result);
         }
 
         [HttpPut]
-        public async Task<ActionResult<Subject>> UpdateSubject(Subject subject)
+        public async Task<ActionResult<Subject>> UpdateSubject(UpdateSubjectRequest request)
         {
+            var subject = new Subject
+            {
+                Name = request.Name,
+                Direction = request.Direction
+            };
+
             var result =
                 await _subjectService.UpdateSubjectAsync(subject);
 
@@ -58,6 +65,14 @@ namespace DaniilBudanovKt_31_23.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpPost("filter")]
+        public async Task<ActionResult<List<Subject>>> GetSubjects(
+            SubjectFilter filter)
+        {
+            var subjects = await _subjectService.GetSubjectsAsync(filter);
+            return Ok(subjects);
         }
     }
 }

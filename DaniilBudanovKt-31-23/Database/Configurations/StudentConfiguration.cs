@@ -17,11 +17,23 @@ namespace DaniilBudanovKt_31_23.Database.Configurations
                 .HasColumnName("id")
                 .HasColumnType(ColumnType.Int);
 
-            builder.Property(x => x.FullName)
-                .HasColumnName("full_name")
+            builder.Property(x => x.LastName)
+                .HasColumnName("last_name")
                 .HasColumnType(ColumnType.String)
-                .HasMaxLength(200)
+                .HasMaxLength(100)
                 .IsRequired();
+
+            builder.Property(x => x.FirstName)
+                .HasColumnName("first_name")
+                .HasColumnType(ColumnType.String)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.Property(x => x.MiddleName)
+                .HasColumnName("middle_name")
+                .HasColumnType(ColumnType.String)
+                .HasMaxLength(100)
+                .IsRequired(false);
 
             builder.Property(x => x.IsDeleted)
                 .HasColumnName("is_deleted")
