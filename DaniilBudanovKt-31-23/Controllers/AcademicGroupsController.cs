@@ -39,6 +39,7 @@ namespace DaniilBudanovKt_31_23.Controllers
         {
             var group = new AcademicGroup
             {
+                Id = request.Id,
                 Name = request.Name,
                 Year = request.Year,
                 SpecialtyId = request.SpecialtyId

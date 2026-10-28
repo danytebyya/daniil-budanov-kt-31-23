@@ -38,6 +38,7 @@ namespace DaniilBudanovKt_31_23.Controllers
         {
             var subject = new Subject
             {
+                Id = request.Id,
                 Name = request.Name,
                 Direction = request.Direction
             };

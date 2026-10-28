@@ -37,6 +37,7 @@ namespace DaniilBudanovKt_31_23.Controllers
         {
             var grade = new Grade
             {
+                Id = request.Id,
                 StudentId = request.StudentId,
                 SubjectId = request.SubjectId,
                 Value = request.Value

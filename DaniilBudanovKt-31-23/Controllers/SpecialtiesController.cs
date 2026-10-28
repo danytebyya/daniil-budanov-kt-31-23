@@ -37,6 +37,7 @@ namespace DaniilBudanovKt_31_23.Controllers
         {
             var specialty = new Specialty
             {
+                Id = request.Id,
                 Name = request.Name
             };
 

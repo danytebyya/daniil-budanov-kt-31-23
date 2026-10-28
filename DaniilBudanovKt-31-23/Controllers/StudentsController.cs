@@ -40,6 +40,7 @@ namespace DaniilBudanovKt_31_23.Controllers
         {
             var student = new Student
             {
+                Id = request.Id,
                 LastName = request.LastName,
                 FirstName = request.FirstName,
                 MiddleName = request.MiddleName,

@@ -2,6 +2,8 @@
 {
     public class UpdateGradeRequest
     {
+        public int Id { get; set; }
+
         public int StudentId { get; set; }
 
         public int SubjectId { get; set; }

@@ -66,7 +66,8 @@ namespace DaniilBudanovKt_31_23.Services.Implementations
         {
             var students = await  _context.Students
                 .Where(x =>
-                    x.AcademicGroup.Specialty.Name == specialtyName)
+                    x.AcademicGroup.Specialty.Name == specialtyName
+                    && x.IsDeleted == false)
                 .Select(x => x.LastName)
                 .Distinct()
                 .ToListAsync();
